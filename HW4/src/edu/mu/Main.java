@@ -1,10 +1,11 @@
 package edu.mu;
+import edu.mu.vehicleManager.VehicleManager;
 
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		VehicleManager manager = new VehicleManager();
+		manager.initializeStock();
 	}
 
 }
