@@ -363,6 +363,44 @@ public class VehicleManager {
 	}
 	
 	
+	//For reference, here are the formulas used to calculate maintenance cost:
+	//Truck: maintenanceCost=distance*mass*(currentYear-modelYear)*cylinders*0.002
+	//Car: maintenanceCost=distance * mass	* (currentYear-modelYear) *	cylinders * 0.0005
+	//SUV: maintenanceCost=distance * mass* (currentYear-modelYear) *cylinders * 0.001
+	//Motorbike: maintenanceCost=distance * mass* (currentYear-modelYear) *cylinders * 0.0002
+	
+	public Vehicle getVehicleWithLowestMaintenanceCost() {
+		Vehicle lowestVehicle = null;
+		
+		return lowestVehicle;
+	}
+	
+	//For Reference, here are the formulas used to calculate efficiency:
+	//Truck: fuelEfficiency = cylinders*gasTankCapacity*fuelPrice/distance * 0.1
+	//Car: fuelEfficiency = cylinders*gasTankCapacity*fuelPrice/distance*0.003
+	//SUV: fuelEfficiency = cylinders*gasTankCapacity*fuelPrice/distance*0.05
+	//Motorbike: fuelEfficiency = cylinders*gasTankCapacity*fuelPrice/distance*0.001
+	
+	
+	public ArrayList<Vehicle>
+	getVehicleWithHighestFuelEfficiency(double distance, double fuelPrice){
+		ArrayList<Vehicle> highestList = new ArrayList<>();
+	
+		return highestList;
+	}
+	
+	public ArrayList<Vehicle>
+	getVehicleWithLowestFuelEfficiency(double distance, double fuelPrice){
+		ArrayList<Vehicle> lowestList = new ArrayList<>();
+		
+		return lowestList;
+	}
+	
+	
+	public double getAverageFuelEfficiencyOfSUVs() {
+		return -1.0;
+	}
+	
 	
 	
 }
