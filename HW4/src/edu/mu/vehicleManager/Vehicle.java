@@ -12,6 +12,13 @@ public abstract class Vehicle {
 	protected int cylinders;
 	protected double gasTankCapacity;
 	protected StartMechanism startType;
+	protected double maintenanceCost;
+	protected double fuelEfficiency;
+	static final int currentYear = 2024;
+
+	public abstract double calculateMaintenanceCost(double distance);
+	public abstract double calculateFuelEfficiency(double distance, double fuelPrice); 
+	public abstract void startEngine();
 	
 	//constructors
 	public Vehicle(String brand, String make, long modelYear, double price, VehicleColor color, FuelType fuelType,
@@ -30,7 +37,7 @@ public abstract class Vehicle {
 		this.startType = startType;
 	}
 	
-	
+	 
 	//copy constructors
 	public Vehicle(Vehicle copy) {
 		this.brand = copy.brand;
@@ -141,7 +148,7 @@ public abstract class Vehicle {
 	public void setStartType(StartMechanism startType) {
 		this.startType = startType;
 	}
-	
+
 	
 	
 }
