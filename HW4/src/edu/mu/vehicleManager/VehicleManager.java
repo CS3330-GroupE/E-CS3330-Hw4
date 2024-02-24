@@ -36,7 +36,6 @@ public class VehicleManager {
 				return false;
 			}
 			
-			System.out.println("Vehicle list file exists!\n");
 			
 			Scanner fileIn = new Scanner(new FileInputStream(vehicleFilePath));
 			
@@ -53,6 +52,9 @@ public class VehicleManager {
 			
 			//reads file, splits lines by commas and creates string tokens
 			//tokens are assinged to variables matching vehicle attributes
+			
+
+			
 			while(fileIn.hasNextLine()) {
 				String vehicleFileLine = fileIn.nextLine();
 				String[] vehicleData = vehicleFileLine.split(",");
@@ -101,18 +103,14 @@ public class VehicleManager {
 					//error -> unknown vehicle type
 					throw new IllegalArgumentException("Unknown vehicle type: " + type);
 				}
-				
-				//displays vehicle information 
-				//this can be removed before submission
-				System.out.println(type + " " + vehicle);
-				
+						
 				//adds current vehicle instance to the vehicle array
 				 vehicleList.add(vehicle);
 				}
 			
 				//closes the file reader and prevent leaks
 				fileIn.close();
-				System.out.println("\n");
+				System.out.println("Reading the file has been successful.\n");
 		}
 		
 		//file handling for if file could not be read and returns false
@@ -123,11 +121,10 @@ public class VehicleManager {
 		
 		return true;
 	}
-	//dummy commment
 	
 	//displays information of all cars in the 
 	public void displayAllCarInformation() {
-		//boolean for if vehicle is not found
+		//boolean for if a car is not found
 		boolean carHasBeenFound = false;
 		
 		//for each loop to iterate through vehicle list
@@ -141,8 +138,14 @@ public class VehicleManager {
 	            System.out.println("Brand: " + vehicle.getBrand());
 	            System.out.println("Make: " + vehicle.getMake());
 	            System.out.println("Model Year: " + vehicle.getModelYear());
-				System.out.println("Maintenance Cost: $" + vehicle.calculateMaintenanceCost(distance));
-	            System.out.println("Fuel Efficiency: " + vehicle.calculateFuelEfficiency(distance, fuelPrice) + " mpg");
+	            System.out.println("Price: $" + String.format("%.2f", vehicle.getPrice()));
+	            System.out.println("Color: " + vehicle.getColor());
+	            System.out.println("Fuel Type: " + vehicle.getFuelType());
+	            System.out.println("Mileage: " + vehicle.getMileage());
+	            System.out.println("Mass: " + vehicle.getMass());
+	            System.out.println("Cylinders: " + vehicle.getCylinders());
+	            System.out.println("Maintenance Cost: $" + String.format("%.2f", vehicle.calculateMaintenanceCost(distance)));
+	            System.out.println("Fuel Efficiency: " + String.format("%.6f", vehicle.calculateFuelEfficiency(distance, fuelPrice)));
 	            System.out.print("Start Mechanism: ");   
 	            vehicle.startEngine();
 				
@@ -157,4 +160,209 @@ public class VehicleManager {
 			System.out.println("There appear to be no Cars in the list.\n");
 		};
 	}
+	
+	public void displayAllTruckInformation() {
+		//boolean for if truck is not found
+		boolean truckHasBeenFound = false;
+		
+		//for each loop to iterate through vehicle list
+		for (Vehicle vehicle : vehicleList) {
+			
+			//checks if element is of subclass Truck
+			if (vehicle instanceof Truck) {
+				
+				//Displays information regarding cars in list
+	            System.out.println("Truck Information:");
+	            System.out.println("Brand: " + vehicle.getBrand());
+	            System.out.println("Make: " + vehicle.getMake());
+	            System.out.println("Model Year: " + vehicle.getModelYear());
+	            System.out.println("Price: $" + String.format("%.2f", vehicle.getPrice()));
+	            System.out.println("Color: " + vehicle.getColor());
+	            System.out.println("Fuel Type: " + vehicle.getFuelType());
+	            System.out.println("Mileage: " + vehicle.getMileage());
+	            System.out.println("Mass: " + vehicle.getMass());
+	            System.out.println("Cylinders: " + vehicle.getCylinders());
+	            System.out.println("Maintenance Cost: $" + String.format("%.2f", vehicle.calculateMaintenanceCost(distance)));
+	            System.out.println("Fuel Efficiency: " + String.format("%.6f", vehicle.calculateFuelEfficiency(distance, fuelPrice)));
+	            System.out.print("Start Mechanism: ");   
+	            vehicle.startEngine();
+				
+	            System.out.println("");
+				truckHasBeenFound = true;
+			}
+		}
+		
+		//makes sure to let user know there were no cars in the list
+		//if no trucks were found then variable stays false
+		if (truckHasBeenFound == false) {
+			System.out.println("There appear to be no Trucks in the list.\n");
+		};
+	}
+	
+	
+	public void displayAllSUVInformation() {
+		//boolean for if SUV is not found
+		boolean SUVHasBeenFound = false;
+		
+		//for each loop to iterate through vehicle list
+		for (Vehicle vehicle : vehicleList) {
+			
+			//checks if element is of subclass SUV
+			if (vehicle instanceof SUV) {
+				
+				//Displays information regarding cars in list
+				System.out.println("SUV Information:");
+				System.out.println("Brand: " + vehicle.getBrand());
+				System.out.println("Make: " + vehicle.getMake());
+				System.out.println("Model Year: " + vehicle.getModelYear());
+				System.out.println("Price: $" + String.format("%.2f", vehicle.getPrice()));
+				System.out.println("Color: " + vehicle.getColor());
+				System.out.println("Fuel Type: " + vehicle.getFuelType());
+				System.out.println("Mileage: " + vehicle.getMileage());
+				System.out.println("Mass: " + vehicle.getMass());
+				System.out.println("Cylinders: " + vehicle.getCylinders());
+				System.out.println("Maintenance Cost: $" + String.format("%.2f", vehicle.calculateMaintenanceCost(distance)));
+				System.out.println("Fuel Efficiency: " + String.format("%.6f", vehicle.calculateFuelEfficiency(distance, fuelPrice)));
+				System.out.print("Start Mechanism: ");   
+				vehicle.startEngine();
+				
+				System.out.println("");
+				SUVHasBeenFound = true;
+			}
+		}
+		
+		//makes sure to let user know there were no SUVs in the list
+		//if no Suv's were found then variable stays false
+		if (SUVHasBeenFound == false) {
+			System.out.println("There appear to be no SUV's in the list.\n");
+		};
+	}
+	
+	
+	public void displayAllMotorBikeInformation() {
+		//boolean for if motorBike is not found
+		boolean motorBikeHasBeenFound = false;
+		
+		//for each loop to iterate through vehicle list
+		for (Vehicle vehicle : vehicleList) {
+			
+			//checks if element is of subclass MotorBike
+			if (vehicle instanceof MotorBike) {
+				
+				//Displays information regarding cars in list
+				System.out.println("MotorBike Information:");
+				System.out.println("Brand: " + vehicle.getBrand());
+				System.out.println("Make: " + vehicle.getMake());
+				System.out.println("Model Year: " + vehicle.getModelYear());
+				System.out.println("Price: $" + String.format("%.2f", vehicle.getPrice()));
+				System.out.println("Color: " + vehicle.getColor());
+				System.out.println("Fuel Type: " + vehicle.getFuelType());
+				System.out.println("Mileage: " + vehicle.getMileage());
+				System.out.println("Mass: " + vehicle.getMass());
+				System.out.println("Cylinders: " + vehicle.getCylinders());
+				System.out.println("Maintenance Cost: $" + String.format("%.2f", vehicle.calculateMaintenanceCost(distance)));
+				System.out.println("Fuel Efficiency: " + String.format("%.6f", vehicle.calculateFuelEfficiency(distance, fuelPrice)));
+				System.out.print("Start Mechanism: ");   
+				vehicle.startEngine();
+				
+				System.out.println("");
+				motorBikeHasBeenFound = true;
+			}
+		}
+		
+		//makes sure to let user know there were no motorBikes in the list
+		//if no motorBikes were found then variable stays false
+		if (motorBikeHasBeenFound == false) {
+			System.out.println("There appear to be no Motorbikes in the list.\n");
+		};
+	}
+	
+	public void displayAllVehicleInformation() {
+		//boolean for if vehicle is not found
+		boolean vehicleHasBeenFound = false;
+		
+		//for each loop to iterate through vehicle list
+		for (Vehicle vehicle : vehicleList) {
+			
+			//checks if element is of subclass vehicle
+			if (vehicle instanceof Vehicle) {
+				
+				//Displays information regarding cars in list
+				System.out.println("Vehicle Information:");
+				System.out.println("Brand: " + vehicle.getBrand());
+				System.out.println("Make: " + vehicle.getMake());
+				System.out.println("Model Year: " + vehicle.getModelYear());
+				System.out.println("Price: $" + String.format("%.2f", vehicle.getPrice()));
+				System.out.println("Color: " + vehicle.getColor());
+				System.out.println("Fuel Type: " + vehicle.getFuelType());
+				System.out.println("Mileage: " + vehicle.getMileage());
+				System.out.println("Mass: " + vehicle.getMass());
+				System.out.println("Cylinders: " + vehicle.getCylinders());
+				System.out.println("Maintenance Cost: $" + String.format("%.2f", vehicle.calculateMaintenanceCost(distance)));
+				System.out.println("Fuel Efficiency: " + String.format("%.6f", vehicle.calculateFuelEfficiency(distance, fuelPrice)));
+				System.out.print("Start Mechanism: ");   
+				vehicle.startEngine();
+				
+				System.out.println("");
+				vehicleHasBeenFound = true;
+			}
+		}
+		
+		//makes sure to let user know there were no vehicles in the list
+		//if no vehicles were found then variable stays false
+		if (vehicleHasBeenFound == false) {
+			System.out.println("There appear to be no Vehicles in the list.\n");
+		};
+	}
+	
+	
+	public void displayVehicleInformation(Vehicle v) {
+		//boolean for if vehicle is not found
+		boolean vehicleHasBeenFound = false;
+		
+		//for each loop to iterate through vehicle list
+		for (Vehicle vehicle : vehicleList) {
+			
+			//checks if element is of subclass vehicle
+			if (vehicle.equals(v)) {
+				
+				//Displays information regarding cars in list
+				System.out.println("Vehicle Information:");
+				System.out.println("Brand: " + vehicle.getBrand());
+				System.out.println("Make: " + vehicle.getMake());
+				System.out.println("Model Year: " + vehicle.getModelYear());
+				System.out.println("Price: $" + String.format("%.2f", vehicle.getPrice()));
+				System.out.println("Color: " + vehicle.getColor());
+				System.out.println("Fuel Type: " + vehicle.getFuelType());
+				System.out.println("Mileage: " + vehicle.getMileage());
+				System.out.println("Mass: " + vehicle.getMass());
+				System.out.println("Cylinders: " + vehicle.getCylinders());
+				System.out.println("Maintenance Cost: $" + String.format("%.2f", vehicle.calculateMaintenanceCost(distance)));
+				System.out.println("Fuel Efficiency: " + String.format("%.6f", vehicle.calculateFuelEfficiency(distance, fuelPrice)));
+				System.out.print("Start Mechanism: ");   
+				vehicle.startEngine();
+				
+				System.out.println("");
+				vehicleHasBeenFound = true;
+			}
+		}
+		
+		//makes sure to let user know there were no vehicles in the list
+		//if no vehicles were found then variable stays false
+		if (vehicleHasBeenFound == false) {
+			System.out.println("There appear to be no Vehicles like the one specified in the list.\n");
+		};
+	}
+	
+	public boolean removeVehicle(Vehicle vehicle) {
+	    return vehicleList.remove(vehicle);
+	}
+
+	public boolean addVehicle(Vehicle vehicle) {
+	    return vehicleList.add(vehicle);
+	}
+	
+	
+	
+	
 }
