@@ -47,5 +47,19 @@ public class Main {
 		manager.printList(list);
 		System.out.println("\n-----End of getVehicleWithHighestFuelEfficiency test----- \n");
 		
+		//for testing
+		double averageSUV;
+		System.out.println("-----Testing getAverageFuelEfficiencyOfSUVs method----- \n");
+		averageSUV = manager.getAverageFuelEfficiencyOfSUVs(distance, fuelPrice);
+		System.out.print(averageSUV  + "\n\n");
+		System.out.println("-----Testing getAverageFuelEfficiencyOfSUVs method----- \n");
+		
+		Vehicle testVehicle;
+	
+		System.out.println("-----Testing getVehicleWithLowestMaintenanceCost method----- \n");
+		testVehicle = manager.getVehicleWithLowestMaintenanceCost(distance);
+		manager.printVehicle(testVehicle);
+		System.out.println("\n-----Testing getVehicleWithLowestMaintenanceCost method----- \n");
+		
 	}
 }

@@ -377,10 +377,49 @@ public class VehicleManager {
 	//SUV: maintenanceCost=distance * mass* (currentYear-modelYear) *cylinders * 0.001
 	//Motorbike: maintenanceCost=distance * mass* (currentYear-modelYear) *cylinders * 0.0002
 	
-	public Vehicle getVehicleWithLowestMaintenanceCost() {
-		Vehicle lowestVehicle = null;
+	public Vehicle getVehicleWithLowestMaintenanceCost(double distance) {
+		//used an arbitrarily large number as the initial value for lowest
+		//it is doubtful the maintenance of a vehicle will be this high
+		double lowest = 100000.00;
 		
-		return lowestVehicle;
+		//will find the lowest maintenance cost
+		for(Vehicle findLowest : vehicleList) {
+			//compares the value of lowest with the current objects maintenance cost
+			//if lower, lowest's value is set to that object's maintenance cost
+			if(lowest > findLowest.calculateMaintenanceCost(distance)){
+				lowest = findLowest.calculateMaintenanceCost(distance);
+			}
+			
+		}
+		//will find lowest maintenance cost
+		for(Vehicle lowestVehicle : vehicleList) {
+			//whenever the lowest maintenance cost is found again, this statement will return that object
+			if(lowest == lowestVehicle.calculateMaintenanceCost(distance)) {
+				return lowestVehicle;
+			}
+		}
+		
+		return null;
+	}
+	
+	//for testing
+	public void printVehicle(Vehicle vehicle) {
+		
+		System.out.println("Car Information:");
+        System.out.println("Brand: " + vehicle.getBrand());
+        System.out.println("Make: " + vehicle.getMake());
+        System.out.println("Model Year: " + vehicle.getModelYear());
+        System.out.println("Price: $" + String.format("%.2f", vehicle.getPrice()));
+        System.out.println("Color: " + vehicle.getColor());
+        System.out.println("Fuel Type: " + vehicle.getFuelType());
+        System.out.println("Mileage: " + vehicle.getMileage());
+        System.out.println("Mass: " + vehicle.getMass());
+        System.out.println("Cylinders: " + vehicle.getCylinders());
+        System.out.println("Maintenance Cost: $" + String.format("%.2f", vehicle.calculateMaintenanceCost(distance)));
+        System.out.println("Fuel Efficiency: " + String.format("%.6f", vehicle.calculateFuelEfficiency(distance, fuelPrice)));
+        System.out.print("Start Mechanism: ");   
+        vehicle.startEngine();
+		
 	}
 	
 	//For Reference, here are the formulas used to calculate efficiency:
@@ -441,6 +480,7 @@ public class VehicleManager {
 		return lowestList;
 	}
 	
+	//added for testing if appropriate
 	public boolean printList(ArrayList<Vehicle> vehicleList) {
 		for(Vehicle vehicle : vehicleList) {
 		 System.out.println("Car Information:");
@@ -462,8 +502,35 @@ public class VehicleManager {
 		return true;
 	}
 	
-	public double getAverageFuelEfficiencyOfSUVs() {
-		return -1.0;
+	public double getAverageFuelEfficiencyOfSUVs(double distance, double fuelPrice) {
+		//variables for calculating average
+		double sum = 0.00;
+		double counter = 0.00;
+		double averageSUV;
+		
+		//will add the fuel efficiencies of all SUVs
+		for(Vehicle vehicle : vehicleList) {
+			if(vehicle instanceof SUV) {
+				//used for testing
+				//System.out.print("\n" + vehicle.calculateFuelEfficiency(distance, fuelPrice));
+			
+				sum = sum + vehicle.calculateFuelEfficiency(distance, fuelPrice);
+				//keeps trakc of how many SUVs in the list
+				counter = counter + 1;
+			}
+		}
+		
+		//used for testing
+		//System.out.print("\nSum =" + sum + "\n");
+		//divides by the number of SUVs in the list
+		averageSUV = sum/counter;
+		
+		if(averageSUV > 0.00) {
+			return averageSUV;
+		}
+		else {
+			return -1.0;
+		}
 	}
 	
 	
