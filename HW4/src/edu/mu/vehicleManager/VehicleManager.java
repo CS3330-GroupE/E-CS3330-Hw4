@@ -598,16 +598,12 @@ public class VehicleManager {
 		//used for testing
 		//System.out.print("\nSum =" + sum + "\n");
 		//divides by the number of SUVs in the list
-		averageSUV = sum/counter;
+		/*averageSUV = sum/counter;
 		
 		if(averageSUV > 0.00) {
 			return averageSUV;
 		}
 		else {
 			return -1.0;
-		}
-	}
-	
-	
-	
+		}*/
 }
