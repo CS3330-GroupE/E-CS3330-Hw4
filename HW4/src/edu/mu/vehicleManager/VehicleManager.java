@@ -570,6 +570,24 @@ public class VehicleManager {
             return false;
     	}
 	}
+
+	private boolean isVehicleType(Vehicle v, Class clazz) {
+		//compares and returns a boolean for input class
+		return clazz.isAssignableFrom(v.getClass());
+	}
+	
+	public int getNumberOfVehichlesByType(Class clazz) {
+		//creates an accumulator
+		int typeCount = 0;
+		//iterates through list
+		for(Vehicle vehicle : vehicleList) {
+			//calls isVehicleType, compares input class, accumulates count on true
+			if(isVehicleType(vehicle, clazz)) {
+				typeCount++;
+			}
+		}
+		return typeCount;
+	}
 		//used for testing
 		//System.out.print("\nSum =" + sum + "\n");
 		//divides by the number of SUVs in the list
