@@ -538,9 +538,14 @@ public class VehicleManager {
 				//System.out.print("\n" + vehicle.calculateFuelEfficiency(distance, fuelPrice));
 			
 				sum = sum + vehicle.calculateFuelEfficiency(distance, fuelPrice);
-				//keeps trakc of how many SUVs in the list
+				//keeps track of how many SUVs in the list
 				counter = counter + 1;
 			}
+			averageSUV = sum/counter;	
+			if(averageSUV > 0.00) {
+				return averageSUV;
+			}
+				return -1.00;
 		}
 
 	public boolean saveVehicleList() {
@@ -573,7 +578,7 @@ public class VehicleManager {
     		}
 	}
 
-	private boolean isVehicleType(Vehicle v, Class clazz) {
+	private boolean isVehicleType(Vehicle v, Class clazz){
 		//compares and returns a boolean for input class
 		return clazz.isAssignableFrom(v.getClass());
 	}
