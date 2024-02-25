@@ -4,6 +4,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
 
 //reference for Team E:
 //Original file contains 11 vehicles. 2 trucks/ 2 Motorbikes / 3 Cars / 4 SUV's 
