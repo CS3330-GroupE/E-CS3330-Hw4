@@ -401,6 +401,27 @@ public class VehicleManager {
 		
 		return null;
 	}
+
+	public Vehicle getVehicleWithHighestMaintenanceCost(double distance) {
+		//set a test value of 0
+		double testValue = 0.00;
+		//iterates through list
+		for(Vehicle vehicle : vehicleList) {
+			//compares current test value to vehicle maintenance cost
+			//higher values take testValue's place
+			if(vehicle.calculateMaintenanceCost(distance) > testValue){
+				testValue = vehicle.calculateMaintenanceCost(distance);
+			}
+		}
+		//iterates through list
+		for(Vehicle highestMCVehicle : vehicleList) {
+			//returns object correlating to highest maintenance cost
+			if(testValue == highestMCVehicle.calculateMaintenanceCost(distance)) {
+				return highestMCVehicle;
+			}
+		}
+		return null;
+	}
 	
 	//for testing
 	public void printVehicle(Vehicle vehicle) {
