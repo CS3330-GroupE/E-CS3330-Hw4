@@ -540,7 +540,36 @@ public class VehicleManager {
 				counter = counter + 1;
 			}
 		}
-		
+
+	public boolean saveVehicleList() {
+    	try (FileWriter writer = new FileWriter(vehicleFilePath)) {
+            //write each product to the file in CSV format
+            for (Vehicle vehicle : vehicleList) {
+            	//writes objects in proper style
+            	//checks type of vehicle and assigns proper type
+            	if (vehicle instanceof Car) {
+            		writer.write(String.format("%s,%s,%s,%d,%.2f,%s,%s,%.2f,%.2f,%d,%.2f,%s%n", "Car", vehicle.getBrand(), vehicle.getMake(), vehicle.getModelYear(), vehicle.getPrice(), vehicle.getColor(), vehicle.getFuelType(), vehicle.getMileage(), vehicle.getMass(), vehicle.getCylinders(), vehicle.getGasTankCapacity(), vehicle.getStartType()));
+            	}
+            	else if (vehicle instanceof Truck) {
+                    writer.write(String.format("%s,%s,%s,%d,%.2f,%s,%s,%.2f,%.2f,%d,%.2f,%s%n", "Truck", vehicle.getBrand(), vehicle.getMake(), vehicle.getModelYear(), vehicle.getPrice(), vehicle.getColor(), vehicle.getFuelType(), vehicle.getMileage(), vehicle.getMass(), vehicle.getCylinders(), vehicle.getGasTankCapacity(), vehicle.getStartType()));
+                }
+            	else if (vehicle instanceof MotorBike) {
+                    writer.write(String.format("%s,%s,%s,%d,%.2f,%s,%s,%.2f,%.2f,%d,%.2f,%s%n", "MotorBike", vehicle.getBrand(), vehicle.getMake(), vehicle.getModelYear(), vehicle.getPrice(), vehicle.getColor(), vehicle.getFuelType(), vehicle.getMileage(), vehicle.getMass(), vehicle.getCylinders(), vehicle.getGasTankCapacity(), vehicle.getStartType()));
+                }
+            	else if (vehicle instanceof SUV) {
+                    writer.write(String.format("%s,%s,%s,%d,%.2f,%s,%s,%.2f,%.2f,%d,%.2f,%s%n", "SUV", vehicle.getBrand(), vehicle.getMake(), vehicle.getModelYear(), vehicle.getPrice(), vehicle.getColor(), vehicle.getFuelType(), vehicle.getMileage(), vehicle.getMass(), vehicle.getCylinders(), vehicle.getGasTankCapacity(), vehicle.getStartType()));
+                }
+            }
+            System.out.println("Save successful!");
+            return true;
+        }
+    	//error catching
+    	catch(IOException error) {
+    		System.out.println("Save unsuccessful");
+            error.printStackTrace();
+            return false;
+    	}
+	}
 		//used for testing
 		//System.out.print("\nSum =" + sum + "\n");
 		//divides by the number of SUVs in the list
