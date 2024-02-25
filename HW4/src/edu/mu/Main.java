@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 import edu.mu.vehicleManager.Vehicle;
 import edu.mu.vehicleManager.VehicleManager;
-import edu.mu.vehicleManaget.Truck
+import edu.mu.vehicleManager.Truck
 
 public class Main {
 
