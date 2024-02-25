@@ -1,4 +1,7 @@
 package edu.mu;
+import java.util.ArrayList;
+
+import edu.mu.vehicleManager.Vehicle;
 import edu.mu.vehicleManager.VehicleManager;
 
 public class Main {
@@ -28,6 +31,21 @@ public class Main {
 		manager.displayAllVehicleInformation();
 		System.out.println("-----End of displayAllVehicleInformation test----- \n");
 		
+		//for testing methods
+		ArrayList<Vehicle> list = new ArrayList<>();
+		//variables being passed in for test
+		double distance = VehicleManager.getDistance();
+		double fuelPrice = VehicleManager.getFuelprice();
+		
+		System.out.println("-----Testing getVehicleWithLowestFuelEfficiency method----- \n");
+		list = manager.getVehicleWithLowestFuelEfficiency(distance, fuelPrice);
+		manager.printList(list);
+		System.out.println("\n-----End of getVehicleWithLowestFuelEfficiency test----- \n");
+		
+		System.out.println("-----Testing getVehicleWithHighestFuelEfficiency method----- \n");
+		list = manager.getVehicleWithHighestFuelEfficiency(distance, fuelPrice);
+		manager.printList(list);
+		System.out.println("\n-----End of getVehicleWithHighestFuelEfficiency test----- \n");
 		
 	}
 }

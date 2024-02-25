@@ -18,6 +18,14 @@ public class VehicleManager {
 	private final static double distance = 300;
 	private final static double fuelPrice = 3.25;
 	
+	public static double getDistance() {
+		return distance;
+	}
+
+	public static double getFuelprice() {
+		return fuelPrice;
+	}
+
 	private String vehicleFilePath = "HW4/src/files/vehicleList.csv";
 	
 	//array list for storing vehicles when the csv file is read
@@ -385,17 +393,74 @@ public class VehicleManager {
 	public ArrayList<Vehicle>
 	getVehicleWithHighestFuelEfficiency(double distance, double fuelPrice){
 		ArrayList<Vehicle> highestList = new ArrayList<>();
-	
+		//set the value to the absolute floor of zero
+		//highly doubtful any cars efficiency will have negative value..
+		double highest = 0.00;
+		
+		//will iterate through vehicle list to find highest fuel efficiency
+		//similar to lowest, but its inverse (detailed explanantion in lowest)
+		for(Vehicle findHighest : vehicleList) {
+			if(highest < findHighest.calculateFuelEfficiency(distance, fuelPrice)){
+				highest = findHighest.calculateFuelEfficiency(distance, fuelPrice);
+			}
+		}
+		
+		//finds the highest fuel efficiency objects and adds them to a list
+		for(Vehicle insertHighest : vehicleList) {
+			if(highest == insertHighest.calculateFuelEfficiency(distance, fuelPrice)) {
+				highestList.add(insertHighest);
+			}
+		}
 		return highestList;
 	}
 	
 	public ArrayList<Vehicle>
 	getVehicleWithLowestFuelEfficiency(double distance, double fuelPrice){
 		ArrayList<Vehicle> lowestList = new ArrayList<>();
+		//used an arbitrarily large number as the initial value for lowest
+		double lowest = 1000.00;
+		
+		//this will go through the list and set the value of lowest equal to the lowest fuel efficient in the list
+		for(Vehicle findLowest : vehicleList) {
+			//if lowest is larger than the current objects value, it will set lowest equal to the current objects fuel efficiency
+			//it will continue to do this till it has ran through the whole list
+			if(lowest > findLowest.calculateFuelEfficiency(distance, fuelPrice)){
+				lowest = findLowest.calculateFuelEfficiency(distance, fuelPrice);
+			}
+			
+		}
+		
+		//this loop then checks lowest's value against all the objects in the list and adds any in the list that have an equal fuel efficiency
+		for(Vehicle insertLowest : vehicleList) {
+			if(lowest == insertLowest.calculateFuelEfficiency(distance, fuelPrice)) {
+				lowestList.add(insertLowest);
+			}
+		}
+		
 		
 		return lowestList;
 	}
 	
+	public boolean printList(ArrayList<Vehicle> vehicleList) {
+		for(Vehicle vehicle : vehicleList) {
+		 System.out.println("Car Information:");
+         System.out.println("Brand: " + vehicle.getBrand());
+         System.out.println("Make: " + vehicle.getMake());
+         System.out.println("Model Year: " + vehicle.getModelYear());
+         System.out.println("Price: $" + String.format("%.2f", vehicle.getPrice()));
+         System.out.println("Color: " + vehicle.getColor());
+         System.out.println("Fuel Type: " + vehicle.getFuelType());
+         System.out.println("Mileage: " + vehicle.getMileage());
+         System.out.println("Mass: " + vehicle.getMass());
+         System.out.println("Cylinders: " + vehicle.getCylinders());
+         System.out.println("Maintenance Cost: $" + String.format("%.2f", vehicle.calculateMaintenanceCost(distance)));
+         System.out.println("Fuel Efficiency: " + String.format("%.6f", vehicle.calculateFuelEfficiency(distance, fuelPrice)));
+         System.out.print("Start Mechanism: ");   
+         vehicle.startEngine();
+		}
+		
+		return true;
+	}
 	
 	public double getAverageFuelEfficiencyOfSUVs() {
 		return -1.0;
