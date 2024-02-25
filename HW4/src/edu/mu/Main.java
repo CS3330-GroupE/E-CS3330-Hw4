@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 import edu.mu.vehicleManager.Vehicle;
 import edu.mu.vehicleManager.VehicleManager;
-import edu.mu.vehicleManager.Truck
+import edu.mu.vehicleManager.SUV
 
 public class Main {
 
@@ -69,7 +69,7 @@ public class Main {
 		
 		//isVehicleType test
 		System.out.println("-----Testing isVehicleType method----- \n");
-		System.out.println("Number of Trucks: " + manager.getNumberOfVehichlesByType(Truck.class));
+		System.out.println("Number of Trucks: " + manager.getNumberOfVehichlesByType(SUV.class));
 		System.out.println("-----End of isVehicleType test----- \n");
 
 		//getVehicleWithHighestMaintenanceCost test
