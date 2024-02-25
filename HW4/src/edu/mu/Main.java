@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 import edu.mu.vehicleManager.Vehicle;
 import edu.mu.vehicleManager.VehicleManager;
+import edu.mu.vehicleManaget.Truck
 
 public class Main {
 
@@ -60,6 +61,22 @@ public class Main {
 		testVehicle = manager.getVehicleWithLowestMaintenanceCost(distance);
 		manager.printVehicle(testVehicle);
 		System.out.println("\n-----Testing getVehicleWithLowestMaintenanceCost method----- \n");
+
+		//saveVehicleList test
+		System.out.println("-----Testing saveVehicleList method----- \n");
+		//manager.saveVehicleList();
+		System.out.println("-----End of saveVehicleList test----- \n");
 		
+		//isVehicleType test
+		System.out.println("-----Testing isVehicleType method----- \n");
+		System.out.println("Number of Trucks: " + manager.getNumberOfVehichlesByType(Truck.class));
+		System.out.println("-----End of isVehicleType test----- \n");
+
+		//getVehicleWithHighestMaintenanceCost test
+		System.out.println("-----Testing getVehicleWithHighestMaintenanceCost method----- \n");
+		testVehicle = manager.getVehicleWithHighestMaintenanceCost(distance);
+		manager.printVehicle(testVehicle);
+		System.out.println("\n-----Testing getVehicleWithHighestMaintenanceCost method----- \n");
+
 	}
 }
