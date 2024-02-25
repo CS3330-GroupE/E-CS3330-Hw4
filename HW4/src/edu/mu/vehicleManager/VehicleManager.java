@@ -536,10 +536,10 @@ public class VehicleManager {
 			if(vehicle instanceof SUV) {
 				//used for testing
 				//System.out.print("\n" + vehicle.calculateFuelEfficiency(distance, fuelPrice));
-			
 				sum = sum + vehicle.calculateFuelEfficiency(distance, fuelPrice);
 				//keeps track of how many SUVs in the list
 				counter = counter + 1;
+				}
 			}
 			averageSUV = sum/counter;	
 			if(averageSUV > 0.00) {
